@@ -36,8 +36,7 @@ void TrafficLight::CycleThroughPhases() {
     if (delta >= duration) {
       current_phase_ = (current_phase_ == TrafficLightPhase::RED) ?
                        TrafficLightPhase::GREEN : TrafficLightPhase::RED;
-      if (current_phase_ == TrafficLightPhase::GREEN)
-        phases_.Send(TrafficLightPhase::GREEN);
+      phases_.Send(TrafficLightPhase(current_phase_));
 
       duration = distr(eng);
       prev_toggle_time = std::chrono::system_clock::now();
